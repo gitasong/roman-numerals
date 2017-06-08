@@ -1,12 +1,4 @@
 // business logic goes here
-var romans = [[1, "I"], [5, "V"], [10, "X"], [50, "L"], [100, "C"], [500, "D"], [1000, "M"]];
-
-function numCheck(number) {
-  if (isNaN(number)) {
-    alert("Please enter a number.");
-  };
-};
-
 function singleDigit(number) {
   var result = "";
   if (number === 1) {
@@ -28,21 +20,19 @@ function singleDigit(number) {
   return result;
 };
 
+// for rank -1
 function onesRank(digit) {
   var result = "";
-  // var primitives = [[1, "I"], [2, "II"], [3, "III"], [4, "IV"], [5, "V"], [6, "VI"], [7, "VII"], [8, "VIII"], [9, "IX"], [10, "X"]];
-
-// for rank -1
   if (digit < 4) {
-    result = "I".repeat(digit);  // X  // C
+    result = "I".repeat(digit);
   } else if (digit === 4) {
-    result = "IV";  // XL  // CD
+    result = "IV";
   } else if (digit === 5) {
-    result = "V";  // L  // D
+    result = "V";
   } else if (digit < 9) {
-    result = "V" + "I".repeat(digit % 5);  // LX  //  DC
+    result = "V" + "I".repeat(digit % 5);
   } else if (digit === 9) {
-    result = "IX";  // XC  // CM
+    result = "IX";
   } else if (digit === 10) {
     result = "X";
   };
@@ -50,19 +40,19 @@ function onesRank(digit) {
   return result;
 };
 
+// for rank -2
 function tensRank(digit) {
-  // for rank -2
   var result = "";
   if (digit < 4) {
-    result = "X".repeat(digit);  // X  // C
+    result = "X".repeat(digit);
   } else if (digit === 4) {
-    result = "XL";  // XL  // CD
+    result = "XL";
   } else if (digit === 5) {
-    result = "L";  // L  // D
+    result = "L";
   } else if (digit < 9) {
-    result = "L" + "X".repeat(digit % 5);  // LX  //  DC
+    result = "L" + "X".repeat(digit % 5);
   } else if (digit === 9) {
-    result = "XC";  // XC  // CM
+    result = "XC";
   } else if (digit === 10) {
     result = "C";
   };
@@ -70,19 +60,19 @@ function tensRank(digit) {
   return result;
 };
 
-function hundredsRank(digit) {
 // for rank -3
+function hundredsRank(digit) {
   var result = "";
   if (digit < 4) {
-    result = "C".repeat(digit);  // X  // C
+    result = "C".repeat(digit);
   } else if (digit === 4) {
-    result = "CD";  // XL  // CD
+    result = "CD";
   } else if (digit === 5) {
-    result = "D";  // L  // D
+    result = "D";
   } else if (digit < 9) {
-    result = "D" + "C".repeat(digit % 5);  // LX  //  DC
+    result = "D" + "C".repeat(digit % 5);
   } else if (digit === 9) {
-    result = "CM";  // XC  // CM
+    result = "CM";
   } else if (digit === 10) {
     result = "M";
   };
@@ -90,8 +80,8 @@ function hundredsRank(digit) {
   return result;
 };
 
+// for rank -4
 function thousandsRank(digit) {
-  // for rank -4
   var result = "";
   if (digit < 4) {
     result = "M".repeat(digit);  // X  // C
@@ -100,57 +90,50 @@ function thousandsRank(digit) {
 };
 
 function multiDigit(number) {
-  // var concatRoman = [];
   var numberArray = number.toString().split("");  // converts number to string, then splits string into array of digits
-    console.log(numberArray);
-    if (numberArray.length === 1) {
+    // console.log(numberArray);
+
+    if (isNaN(number) || number >= 4000) {
+      alert("Please enter a number less than 4000.");
+    } else if (numberArray.length === 1) {
       var onesDigit = parseInt(numberArray[0]);
-        console.log(onesDigit);
+        // console.log(onesDigit);
 
       var giantConcat = onesRank(onesDigit);
 
     } else if (numberArray.length === 2) {
       var onesDigit = parseInt(numberArray[1]);
-        console.log(onesDigit);
+        // console.log(onesDigit);
       var tensDigit = parseInt(numberArray[0]);
-        console.log(tensDigit);
+        // console.log(tensDigit);
 
       var giantConcat = tensRank(tensDigit) + onesRank(onesDigit);
 
     } else if (numberArray.length === 3) {
       var onesDigit = parseInt(numberArray[2]);
-        console.log(onesDigit);
+        // console.log(onesDigit);
       var tensDigit = parseInt(numberArray[1]);
-        console.log(tensDigit);
+        // console.log(tensDigit);
       var hundredsDigit = parseInt(numberArray[0]);
-        console.log(hundredsDigit);
+        // console.log(hundredsDigit);
 
       var giantConcat = hundredsRank(hundredsDigit) + tensRank(tensDigit) + onesRank(onesDigit);
 
     } else if (numberArray.length === 4) {
       var onesDigit = parseInt(numberArray[3]);
-        console.log(onesDigit);
+        // console.log(onesDigit);
       var tensDigit = parseInt(numberArray[2]);
-        console.log(tensDigit);
+        // console.log(tensDigit);
       var hundredsDigit = parseInt(numberArray[1]);
-        console.log(hundredsDigit);
+        // console.log(hundredsDigit);
       var thousandsDigit = parseInt(numberArray[0]);
-        console.log(thousandsDigit);
+        // console.log(thousandsDigit);
       var giantConcat = thousandsRank(thousandsDigit) + hundredsRank(hundredsDigit) + tensRank(tensDigit) + onesRank(onesDigit);
     };
 
-  console.log(giantConcat);
+  // console.log(giantConcat);
   return giantConcat;
 };
-
-// numberArray.length - (numberArray.index + 1)
-// -(numberArray.index + 1)
-// nunberArray[-1] * 1
-// numberArray[-2] * 10
-// numberArray[-3] * 100
-// numberArray[-4] * 1000
-
-
 
 // front-end logic goes here
 $(document).ready(function() {
