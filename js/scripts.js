@@ -103,19 +103,42 @@ function multiDigit(number) {
   // var concatRoman = [];
   var numberArray = number.toString().split("");  // converts number to string, then splits string into array of digits
     console.log(numberArray);
-  // for (digit = 0; digit <= numberArray.length; digit += 1) {  // looping through digits of number in array
-    // concatRoman += multiSymbol(parseInt(numberArray[digit]));  // concatenating Roman equivalents of each digit
-    // console.log(concatRoman);
-    var onesDigit = parseInt(numberArray[3]);
-      console.log(onesDigit);
-    var tensDigit = parseInt(numberArray[2]);
-      console.log(tensDigit);
-    var hundredsDigit = parseInt(numberArray[1]);
-      console.log(hundredsDigit);
-    var thousandsDigit = parseInt(numberArray[0]);
-      console.log(thousandsDigit);
-    var giantConcat = thousandsRank(thousandsDigit) + hundredsRank(hundredsDigit) + tensRank(tensDigit) + onesRank(onesDigit);
-  // };
+    if (numberArray.length === 1) {
+      var onesDigit = parseInt(numberArray[0]);
+        console.log(onesDigit);
+
+      var giantConcat = onesRank(onesDigit);
+
+    } else if (numberArray.length === 2) {
+      var onesDigit = parseInt(numberArray[1]);
+        console.log(onesDigit);
+      var tensDigit = parseInt(numberArray[0]);
+        console.log(tensDigit);
+
+      var giantConcat = tensRank(tensDigit) + onesRank(onesDigit);
+
+    } else if (numberArray.length === 3) {
+      var onesDigit = parseInt(numberArray[2]);
+        console.log(onesDigit);
+      var tensDigit = parseInt(numberArray[1]);
+        console.log(tensDigit);
+      var hundredsDigit = parseInt(numberArray[0]);
+        console.log(hundredsDigit);
+
+      var giantConcat = hundredsRank(hundredsDigit) + tensRank(tensDigit) + onesRank(onesDigit);
+
+    } else if (numberArray.length === 4) {
+      var onesDigit = parseInt(numberArray[3]);
+        console.log(onesDigit);
+      var tensDigit = parseInt(numberArray[2]);
+        console.log(tensDigit);
+      var hundredsDigit = parseInt(numberArray[1]);
+        console.log(hundredsDigit);
+      var thousandsDigit = parseInt(numberArray[0]);
+        console.log(thousandsDigit);
+      var giantConcat = thousandsRank(thousandsDigit) + hundredsRank(hundredsDigit) + tensRank(tensDigit) + onesRank(onesDigit);
+    };
+
   console.log(giantConcat);
   return giantConcat;
 };
