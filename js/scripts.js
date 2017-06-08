@@ -1,8 +1,9 @@
 // business logic goes here
-if (isNaN(number) === true) {
-  alert("Please enter a number.");
-}
-
+function numCheck(number) {
+  if (isNaN(number)) {
+    alert("Please enter a number.");
+  };
+};
 
 
 // front-end logic goes here
@@ -11,7 +12,7 @@ $(document).ready(function() {
     event.preventDefault();
     var number = parseInt($("input#number-string").val());
     console.log(number);
-
+    numCheck(number);
 
   });
 });
