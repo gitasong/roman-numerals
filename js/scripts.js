@@ -13,6 +13,16 @@ function singleDigit(number) {
     result = "I";
   } else if (number === 5) {
     result = "V";
+  } else if (number === 10) {
+    result = "X";
+  } else if (number === 50) {
+    result = "L";
+  } else if (number === 100) {
+    result = "C";
+  } else if (number === 500) {
+    result = "D";
+  } else if (number === 1000) {
+    result = "M";
   };
   return result;
 };
@@ -47,6 +57,6 @@ $(document).ready(function() {
     // numCheck(number);
     // singleDigit(number);
     // multiSymbol(number);
-    $("#result").text(multiSymbol(number));
+    $("#result").text(singleDigit(number));
   });
 });
